@@ -1,25 +1,40 @@
-# 导入包
+#### 导入包
+```python
 import pandas as pd
 import numpy as np
-
+# 忽略警告错误
 import warnings
 warnings.simplefilter('ignore')
 
 import matplotlib.pyplot as plt
-plt.rcParams['font.sans-serif'] = 'SimHei'
-plt.rcParams['axes.unicode_minus'] = 'False'
+plt.rcParams['font.sans-serif'] = 'SimHei'   # 解决图表的中文乱码
+plt.rcParams['axes.unicode_minus'] = 'False' # 解决负号无法显示
+```
 
-# 链接数据库
+#### 链接数据库
+```python
+# Mysql
 from sqlalchemy import create_engine
-hwi = create_engine("mysql+pymysql://table_name1:password1:@ip1/data_base1",
+hwi = create_engine("mysql+pymysql://table_name1:password1:@ip1/data_base_name1",
                     connect_args={'charset': 'utf8'})
-dct = create_engine("mysql+pymysql://table_name2:password2:@ip2/data_base2",
-                    connect_args={'charset': 'utf8'})
-# 导入路径
+
+
+# 导入数据表
+df = pd.read_csv('D:/name.csv', encoding = 'utf-8', dtype= {'mobile_L7':str})
+```
+
+
+#### 设置导入路径
+```python
 import os
 os.chdir(r'C:\Users\admin\Desktop\acard_v4')
+```
 
+#### 读取数据
 
+```python
 #%% 选取数据
 sql = open('01-y.sql', encoding='utf-8').read()
-y = pd.read_sql(sql, dct)
+df1 = pd.read_sql(sql, dct)
+```
+
